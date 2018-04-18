@@ -61,7 +61,7 @@ zed-ros-wrapper/CMakeFiles/zed_wrapper_gencfg: /home/nvidia/catkin_ws/devel/lib/
 /home/nvidia/catkin_ws/devel/include/zed_wrapper/ZedConfig.h: /opt/ros/lunar/share/dynamic_reconfigure/templates/ConfigType.py.template
 /home/nvidia/catkin_ws/devel/include/zed_wrapper/ZedConfig.h: /opt/ros/lunar/share/dynamic_reconfigure/templates/ConfigType.h.template
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/nvidia/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating dynamic reconfigure files from cfg/Zed.cfg: /home/nvidia/catkin_ws/devel/include/zed_wrapper/ZedConfig.h /home/nvidia/catkin_ws/devel/lib/python2.7/dist-packages/zed_wrapper/cfg/ZedConfig.py"
-	cd /home/nvidia/catkin_ws/build/zed-ros-wrapper && ../catkin_generated/env_cached.sh /home/nvidia/catkin_ws/src/zed-ros-wrapper/cfg/Zed.cfg /opt/ros/lunar/share/dynamic_reconfigure/cmake/.. /home/nvidia/catkin_ws/devel/share/zed_wrapper /home/nvidia/catkin_ws/devel/include/zed_wrapper /home/nvidia/catkin_ws/devel/lib/python2.7/dist-packages/zed_wrapper
+	cd /home/nvidia/catkin_ws/build/zed-ros-wrapper && ../catkin_generated/env_cached.sh /home/nvidia/catkin_ws/build/zed-ros-wrapper/setup_custom_pythonpath.sh /home/nvidia/catkin_ws/src/zed-ros-wrapper/cfg/Zed.cfg /opt/ros/lunar/share/dynamic_reconfigure/cmake/.. /home/nvidia/catkin_ws/devel/share/zed_wrapper /home/nvidia/catkin_ws/devel/include/zed_wrapper /home/nvidia/catkin_ws/devel/lib/python2.7/dist-packages/zed_wrapper
 
 /home/nvidia/catkin_ws/devel/share/zed_wrapper/docs/ZedConfig.dox: /home/nvidia/catkin_ws/devel/include/zed_wrapper/ZedConfig.h
 	@$(CMAKE_COMMAND) -E touch_nocreate /home/nvidia/catkin_ws/devel/share/zed_wrapper/docs/ZedConfig.dox

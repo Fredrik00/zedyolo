@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+    <!-- Nodelet manager -->
+    <arg name="manager_name" default="cyborg_nodelet_manager"/>
+
+    <!-- ZED arguments -->
+    <arg name="camera_model"          default="0" /> <!-- 0=ZED, 1=ZEDM-->
+    <arg name="svo_file"              default="" /><!-- <arg name="svo_file" default="path/to/svo/file.svo"> -->
+    <arg name="zed_id"                default="0" />
+    <!-- If a ZED SN is given, zed_id is ignored and the wrapper will specifically look for the ZED with the corresponding serial number -->
+    <arg name="serial_number"                default="0" /> 
+
+    <!-- GPU ID-->
+    <arg name="gpu_id"                default="-1" />
+    <!-- Definition coordinate frames -->
+    <arg name="publish_tf"            default="true" />
+    <arg name="odometry_frame"        default="odom" />
+    <arg name="base_frame"            default="zed_center" />
+    <arg name="camera_frame"          default="zed_left_camera" />
+    <arg name="depth_frame"           default="zed_depth_camera" />
+    <!-- Publish urdf zed -->
+    <arg name="publish_urdf"          default="true" />
+
+    <!-- ROS_DNN arguments -->
+    <arg name="dnn_model"          default="/home/nvidia/darknet/yolov2.weights"/>
+    <arg name="dnn_config"         default="/home/nvidia/darknet/cfg/yolov2.cfg"/>
+    <arg name="dnn_framework"      default="darknet"/>
+    <arg name="dnn_frame_height"   default="608"/>
+    <arg name="dnn_frame_width"    default="608"/>
+
+    <node pkg="nodelet" type="nodelet" name="$(arg manager_name)"  args="manager"/>
+
+    <node pkg="nodelet" type="nodelet" name="zed_wrapper" output="screen"
+        args="load zed_wrapper/ZEDWrapperNodelet $(arg manager_name)">
+        <param name="camera_model" value="$(arg camera_model)" />
+        <!-- publish odometry frame -->
+        <param name="publish_tf"            value="$(arg publish_tf)" />
+        <!-- Configuration frame camera -->    
+        <param name="odometry_frame"        value="$(arg odometry_frame)" />
+        <param name="base_frame"            value="$(arg base_frame)" />
+        <param name="camera_frame"          value="$(arg camera_frame)" />
+        <param name="depth_frame"           value="$(arg depth_frame)" />
+
+        <!-- SVO file path -->
+        <param name="svo_filepath"          value="$(arg svo_file)" />
+
+        <!-- ZED parameters -->
+        <param name="zed_id"                value="$(arg zed_id)" />
+        <param name="serial_number"      value="$(arg serial_number)" />
+
+        <param name="resolution"            value="3" />
+        <param name="quality"               value="1" />
+        <param name="sensing_mode"          value="0" />
+        <param name="frame_rate"            value="30" />
+        <param name="odometry_db"           value="" />
+        <param name="openni_depth_mode"     value="0" />
+        <param name="gpu_id"                value="$(arg gpu_id)" />
+        <param name="confidence"            value="100" />
+        <param name="gain"                  value="100" />
+        <param name="exposure"              value="100" />
+        <param name="auto_exposure"         value="true" />
+        <param name="depth_stabilization"   value="1" />
+
+        <!-- ROS topic names -->
+        <param name="rgb_topic"             value="rgb/image_rect_color" />
+        <param name="rgb_raw_topic"         value="rgb/image_raw_color" />
+        <param name="rgb_cam_info_topic"    value="rgb/camera_info" />
+        <param name="rgb_cam_info_raw_topic"    value="rgb/camera_info_raw" />
+
+        <param name="left_topic"            value="left/image_rect_color" />
+        <param name="left_raw_topic"        value="left/image_raw_color" />
+        <param name="left_cam_info_topic"   value="left/camera_info" />
+        <param name="left_cam_info_raw_topic"   value="left/camera_info_raw" />
+
+        <param name="right_topic"           value="right/image_rect_color" />
+        <param name="right_raw_topic"       value="right/image_raw_color" />
+        <param name="right_cam_info_topic"  value="right/camera_info" />
+        <param name="right_cam_info_raw_topic"  value="right/camera_info_raw" />
+
+        <param name="depth_topic"           value="depth/depth_registered" />
+        <param name="depth_cam_info_topic"  value="depth/camera_info" />
+
+        <param name="point_cloud_topic"     value="point_cloud/cloud_registered" />
+
+        <param name="odometry_topic"        value="odom" />
+    </node>
+
+    <node pkg="nodelet" type="nodelet" name="object_detector" output="screen"
+        args="load ros_dnn/ObjectDetectorNodelet $(arg manager_name)">
+
+        <param name="camera_topic_name"  value="/left/image_raw_color" />
+        <param name="camera_topic_qsize" value="1" />
+
+        <param name="predictions_topic_name"  value="predictions" />
+        <param name="predictions_topic_qsize" value="1" />
+        <param name="predictions_topic_latch" value="true" />
+
+        <param name="detection_image_topic_name"  value="detection_image" />
+        <param name="detection_image_topic_qsize" value="1" />
+        <param name="detection_image_topic_latch" value="true" />
+
+        <param name="model_path"   value="$(arg dnn_model)" />
+        <param name="config_path"  value="$(arg dnn_config)" />
+        <param name="framework"    value="$(arg dnn_framework)" />
+        <param name="frame_height" value="$(arg dnn_frame_height)" />
+        <param name="frame_width"  value="$(arg dnn_frame_width)" />
+
+        <rosparam command="load" file="$(find ros_dnn)/config/classes.yaml"/>
+    </node>
+</launch>

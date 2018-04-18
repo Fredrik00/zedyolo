@@ -10,7 +10,6 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "DISABLE_OPENNI2"
   "DISABLE_PCAP"
   "DISABLE_PNG"
   "QT_CORE_LIB"
@@ -24,9 +23,10 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
   "vtkIOExodus_AUTOINIT=1(vtkIOParallelExodus)"
   "vtkIOGeometry_AUTOINIT=1(vtkIOMPIParallel)"
   "vtkIOImage_AUTOINIT=1(vtkIOMPIImage)"
+  "vtkIOParallel_AUTOINIT=1(vtkIOMPIParallel)"
   "vtkIOSQL_AUTOINIT=2(vtkIOMySQL,vtkIOPostgreSQL)"
   "vtkRenderingContext2D_AUTOINIT=1(vtkRenderingContextOpenGL)"
-  "vtkRenderingCore_AUTOINIT=4(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingFreeTypeOpenGL,vtkRenderingOpenGL)"
+  "vtkRenderingCore_AUTOINIT=3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL)"
   "vtkRenderingFreeType_AUTOINIT=2(vtkRenderingFreeTypeFontConfig,vtkRenderingMatplotlib)"
   "vtkRenderingLIC_AUTOINIT=1(vtkRenderingParallelLIC)"
   "vtkRenderingVolume_AUTOINIT=1(vtkRenderingVolumeOpenGL)"
@@ -35,7 +35,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/nvidia/catkin_ws/devel/include"
-  "/usr/include/vtk-6.2"
+  "/usr/include/vtk-6.3"
   "/usr/include/hdf5/openmpi"
   "/usr/lib/openmpi/include/openmpi/opal/mca/event/libevent2021/libevent"
   "/usr/lib/openmpi/include/openmpi/opal/mca/event/libevent2021/libevent/include"
@@ -45,9 +45,9 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/aarch64-linux-gnu"
   "/usr/include/freetype2"
   "/usr/include/aarch64-linux-gnu/freetype2"
-  "/usr/include/jsoncpp"
   "/usr/include/libxml2"
   "/usr/include/tcl"
+  "/usr/include/jsoncpp"
   "/opt/ros/lunar/include"
   "/opt/ros/lunar/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/usr/include/eigen3"
@@ -57,6 +57,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/opt/ros/lunar/include/opencv-3.3.1-dev"
   "/opt/ros/lunar/include/opencv-3.3.1-dev/opencv"
   "/usr/include/ni"
+  "/usr/include/openni2"
   "/usr/include/aarch64-linux-gnu/qt5"
   "/usr/include/aarch64-linux-gnu/qt5/QtWidgets"
   "/usr/include/aarch64-linux-gnu/qt5/QtGui"

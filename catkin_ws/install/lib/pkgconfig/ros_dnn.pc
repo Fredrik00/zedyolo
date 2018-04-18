@@ -1,0 +1,8 @@
+prefix=/home/nvidia/catkin_ws/install
+
+Name: ros_dnn
+Description: Description of ros_dnn
+Version: 0.1.0
+Cflags: -I/home/nvidia/catkin_ws/install/include
+Libs: -L/home/nvidia/catkin_ws/install/lib 
+Requires: cv_bridge roscpp sensor_msgs opencv image_transport ros_dnn_msgs

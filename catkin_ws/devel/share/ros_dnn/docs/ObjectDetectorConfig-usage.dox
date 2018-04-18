@@ -1,0 +1,7 @@
+\subsubsection usage Usage
+\verbatim
+<node name="ros_dnn" pkg="ros_dnn" type="ros_dnn">
+  <param name="conf_threshold" type="double" value="0.5" />
+</node>
+\endverbatim
+
