@@ -28,7 +28,7 @@ class image_retriever:
 		self.h = 376
 		self.w = 672
 		self.fov = np.pi/2
-		self.thresh = 0.6
+		self.thresh = 0.5
 		self.hier_thresh = 0.8
 		self.bridge = CvBridge()
 		fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -76,9 +76,11 @@ class image_retriever:
 		
 			preds.predictions.append(pred)
 
+			label = output['class'] + " " + str(output['distance'])
+
 			cv2.rectangle(image, (output['left'],output['top']), (output['right'],output['bottom']), (0,255,0), 2)
 			font = cv2.FONT_HERSHEY_SIMPLEX
-			cv2.putText(image,output['class'],(output['left'],output['top']+15), font, 0.5,(255,255,255),1,cv2.LINE_AA)
+			cv2.putText(image, label, (output['left'],output['top']+15), font, 0.5,(255,255,255),1,cv2.LINE_AA)
 
 		cv2.imshow("image", image)
 		self.video.write(image)
