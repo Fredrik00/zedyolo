@@ -4,9 +4,13 @@ This project is designed to run on a Nvidia Jetson TX2 development kit combined 
 
 For installation instructions we first direct to the external resources, follow their instructions to set up the environment.
 https://www.stereolabs.com/developers/release/2.3/ 
+
 http://wiki.ros.org/lunar/Installation/Ubuntu
+
 http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment
+
 https://github.com/stereolabs/zed-ros-wrapper (source code included in the project)
+
 https://github.com/digitalbrain79/pyyolo (source code included in the project)
 
 Refer to general instructions for installation of ROS packages, as well as running them.
