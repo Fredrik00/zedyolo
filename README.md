@@ -13,5 +13,7 @@ https://github.com/stereolabs/zed-ros-wrapper (source code included in the proje
 
 https://github.com/digitalbrain79/pyyolo (source code included in the project)
 
+The weights used by the object detection network are not included due to size restraints. To retrieve them open a terminal in catkin_ws/src/object_detection/src/darknet and put in: wget https://pjreddie.com/media/files/yolov2.weights
+
 Refer to general instructions for installation of ROS packages, as well as running them.
 Once the project is fully set up and the ROS ZED Wrapper is running, the project can be launched from either of the aforementioned python files. Output can then for example be read in the terminal using "rostopic echo /objdet/predictions".
